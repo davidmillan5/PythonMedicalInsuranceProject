@@ -41,3 +41,55 @@ print(medical_records)
 
 medical_records_clean = []
 
+medical_records_clean = []
+
+for record in medical_records:
+  record_clean = []
+  for item in record:
+    record_clean.append(item.strip())
+  medical_records_clean.append(record_clean)
+
+print(medical_records_clean)
+
+
+for record in medical_records_clean:
+    record[0] = record[0].upper()
+    print(record[0])
+
+names = []
+ages = []
+bmis = []
+insurance_costs = []
+
+
+for data in medical_records_clean:
+    names.append(data[0])
+    ages.append(data[1])
+    bmis.append(data[2])
+    insurance_costs.append(data[3])
+
+print("Names: " + str(names))
+print("Ages: " + str(ages))
+print("bmis: " + str(bmis))
+print("Insurance Costs: " + str(insurance_costs))
+
+total_bmi = 0
+
+for bmi in bmis:
+    total_bmi += float(bmi)
+    average_bmi = total_bmi / len(bmis)
+    print("Average BMI: {}".format(average_bmi))
+
+total_cost = 0
+
+updated_costs = [cost.replace('$', '') for cost in insurance_costs]
+# print(("The list after removal of character : " + str(updated_costs)))
+
+for cost in updated_costs:
+    total_cost += float(cost)
+
+average_cost = total_cost / len(insurance_costs)
+print("Average insurance cost: {}".format(average_cost))
+
+for i in medical_records_clean:
+    print(str(i[0].title().split()[0]) + " is " +str(i[1]) + " years old with a BMI of " + str(i[2] + " and an insurance cost of " + str(i[3]) + ".\n"))
